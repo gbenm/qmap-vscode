@@ -1,0 +1,25 @@
+{
+    "name": "qmap",
+    "displayName": "qmap",
+    "description": "highlight qmap language in template literals",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.68.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "qmap",
+            "aliases": ["qmap", "qmap"],
+            "extensions": [""],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "qmap",
+            "scopeName": ".qmp",
+            "path": "./syntaxes/qmap.tmLanguage.json"
+        }]
+    }
+}
