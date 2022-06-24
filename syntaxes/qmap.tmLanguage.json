@@ -59,7 +59,9 @@
             }
           },
           "patterns": [{ "include": "#root" }]
-        }
+        },
+        { "include": "#strings"},
+        { "include": "#id"}
       ]
     },
     "root": {
