@@ -1,6 +1,7 @@
 # qmap
-Enable syntax highlighting on literal strings using `/*qmap*/`
-after open template string, or when you use `qmap(``)`.
+Enables syntax highlight in strings using `/*qmap*/`
+after opening a string (without spaces), or when
+using `qmap(string)` function.
 
 ## Features
 
