@@ -48,7 +48,7 @@
     "qmap": {
       "patterns": [
         {
-          "begin": "([^{}]*)\\s*{",
+          "begin": "([^{}]*)\\s*{?",
           "end": "}",
           "beginCaptures": {
             "1": {
@@ -68,10 +68,16 @@
       "patterns": [
         { "include": "#comment" },
         { "include": "#keywords" },
-        { "include": "#strings"},
-        { "include": "#id"},
-        { "include": "#comma" }
+        { "include": "#block"},
+        { "include": "#fn"},
+        { "include": "#field_name"},
+        { "include": "#rename"},
+        { "include": "#dot"}
       ]
+    },
+    "dot": {
+      "name": "punctuation.accessor",
+      "match": "\\."
     },
     "comment": {
       "patterns": [
@@ -86,38 +92,125 @@
         }
       ]
     },
-    "comma": {
-      "match": ",",
-      "name": "punctuation.comma"
-    },
 		"keywords": {
 			"patterns": [
         {
           "name": "keyword.operator",
-          "match": "(\\.\\.\\.)(\\s*&)?"
+          "match": "((\\.\\.\\.)(\\s*&)?)|(,)|(!)"
         }
       ]
 		},
+    "fn": {
+      "begin": "([a-zA-Z_$][a-zA-Z0-9_$]*\\s*(!)?\\s*)\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function"
+        },
+        "2": {
+          "patterns": [{ "include": "#keywords" }]
+        }
+      },
+      "end": "\\)",
+      "patterns": [
+        { "include": "#root" },
+        { "include": "#vars" }
+      ]
+    },
+    "block": {
+      "begin": "{",
+      "end": "}",
+      "patterns": [{ "include": "#root" }]
+    },
+    "field_name": {
+      "patterns": [
+        { "include": "#id" },
+        { "include": "#strings" }
+      ]
+    },
+    "rename": {
+      "name": "storage.type",
+      "match": "(.+):"
+    },
     "vars": {
       "patterns": [
-        {
-          "name": "support.function",
-          "match": "@[a-zA-Z_$][a-zA-Z0-9_$]*"
-        }
+        { "include": "#primitive" },
+        { "include": "#array_arg" },
+        { "include": "#exvar" }
       ]
+    },
+    "exvar": {
+      "name": "support.function",
+      "match": "@[a-zA-Z_$][a-zA-Z0-9_$]*"
+    },
+    "primitive": {
+      "begin": "@{",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.operator"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "keyword.operator"
+        }
+      },
+      "patterns": [
+        { "include": "#strings" },
+        { "include": "#bool" },
+        { "include": "#number" }
+      ]
+    },
+    "array_arg": {
+      "begin": "@\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "support.function"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "support.function"
+        }
+      },
+      "patterns": [{ "include": "#root" }]
+    },
+    "number": {
+      "name": "constant.numeric",
+      "match": "[+-]?[0-9]+(\\.[0-9]+)?"
+    },
+    "bool": {
+      "name": "constant.language.boolean",
+      "match": "true|false"
     },
     "id": {
       "name": "variable.other",
       "match": "[a-zA-Z_$][a-zA-Z0-9_$]*"
     },
 		"strings": {
-			"name": "string.quoted.double",
-			"begin": "\"",
-			"end": "\"",
       "patterns": [
         {
-          "name": "constant.character.escape",
-          "match": "\\\\."
+          "name": "string.quoted.double",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
+            }
+          ]
         }
       ]
 		}
