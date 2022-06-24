@@ -26,6 +26,46 @@
     {
       "name": "taggedTemplates",
       "contentName": "meta.embedded.block",
+      "begin": "(')(/\\*\\s*qmap\\s*\\*/)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.quoted.single"
+        },
+        "2": {
+          "name": "comment.block"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.single"
+        }
+      },
+      "patterns": [{ "include": "#qmap" }]
+    },
+    {
+      "name": "taggedTemplates",
+      "contentName": "meta.embedded.block",
+      "begin": "(\")(/\\*\\s*qmap\\s*\\*/)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.quoted.double"
+        },
+        "2": {
+          "name": "comment.block"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.double"
+        }
+      },
+      "patterns": [{ "include": "#qmap" }]
+    },
+    {
+      "name": "taggedTemplates",
+      "contentName": "meta.embedded.block",
       "begin": "(`)(/\\*\\s*qmap\\s*\\*/)",
       "beginCaptures": {
         "1": {
