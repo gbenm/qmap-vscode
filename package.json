@@ -13,7 +13,12 @@
         "grammars": [{
             "scopeName": "source.qmap.injection",
             "path": "./syntaxes/qmap.tmLanguage.json",
-            "injectTo": ["source.js"]
+            "injectTo": [
+                "source.js",
+                "source.ts",
+                "source.js.jsx",
+                "source.tsx"
+            ]
         }]
     }
 }
