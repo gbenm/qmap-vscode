@@ -6,7 +6,7 @@
     {
       "name": "taggedTemplates",
       "contentName": "meta.embedded.block",
-      "begin": "(qmap)\\((`)",
+      "begin": "(qmap)\\((`|\"|')",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function"
@@ -15,7 +15,7 @@
           "name": "punctuation.definition.string.template.begin"
         }
       },
-      "end": "(`)\\)",
+      "end": "(`|\"|')\\)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.template.end"
