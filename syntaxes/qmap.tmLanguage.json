@@ -50,14 +50,6 @@
         {
           "begin": "{",
           "end": "}",
-          "beginCaptures": {
-            "1": {
-              "patterns": [
-                { "include": "#strings"},
-                { "include": "#id"}
-              ]
-            }
-          },
           "patterns": [{ "include": "#root" }]
         },
         { "include": "#strings"},
