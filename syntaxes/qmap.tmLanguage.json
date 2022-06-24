@@ -48,7 +48,7 @@
     "qmap": {
       "patterns": [
         {
-          "begin": "([^{}]*)\\s*{?",
+          "begin": "{",
           "end": "}",
           "beginCaptures": {
             "1": {
