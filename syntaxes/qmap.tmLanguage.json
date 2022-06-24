@@ -1,32 +1,114 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "qmap",
+  "injectionSelector": "L:source -string -comment",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
+    {
+      "name": "taggedTemplates",
+      "contentName": "meta.embedded.block",
+      "begin": "(qmap)\\((`)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function"
+        },
+        "2": {
+          "name": "punctuation.definition.string.template.begin"
+        }
+      },
+      "end": "(`)\\)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.template.end"
+        }
+      },
+      "patterns": [{ "include": "#qmap" }]
+    },
+    {
+      "name": "taggedTemplates",
+      "contentName": "meta.embedded.block",
+      "begin": "(`)(/\\*\\s*qmap\\s*\\*/)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.template.begin"
+        },
+        "2": {
+          "name": "comment.block"
+        }
+      },
+      "end": "`",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.template.end"
+        }
+      },
+      "patterns": [{ "include": "#qmap" }]
+    }
 	],
 	"repository": {
+    "qmap": {
+      "patterns": [
+        {
+          "begin": "([^{}]*)\\s*{",
+          "end": "}",
+          "beginCaptures": {
+            "1": {
+              "patterns": [
+                { "include": "#strings"},
+                { "include": "#id"}
+              ]
+            }
+          },
+          "patterns": [{ "include": "#root" }]
+        }
+      ]
+    },
+    "root": {
+      "patterns": [
+        { "include": "#comment" },
+        { "include": "#keywords" },
+        { "include": "#strings"},
+        { "include": "#id"},
+        { "include": "#comma" }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line",
+          "match": "//.*"
+        },
+        {
+          "name": "comment.block",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "comma": {
+      "match": ",",
+      "name": "punctuation.comma"
+    },
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.qmap",
 				"match": "\\b(if|while|for|return)\\b"
 			}]
 		},
+    "id": {
+      "name": "variable.other",
+      "match": "[a-zA-Z_$][a-zA-Z0-9_$]*"
+    },
 		"strings": {
-			"name": "string.quoted.double.qmap",
+			"name": "string.quoted.double",
 			"begin": "\"",
 			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.qmap",
-					"match": "\\\\."
-				}
-			]
+      "patterns": [
+        {
+          "name": "constant.character.escape",
+          "match": "\\\\."
+        }
+      ]
 		}
 	},
-	"scopeName": ".qmp"
+	"scopeName": "source.qmap.injection"
 }
