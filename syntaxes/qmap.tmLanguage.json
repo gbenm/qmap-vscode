@@ -89,11 +89,21 @@
       "name": "punctuation.comma"
     },
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.qmap",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+			"patterns": [
+        {
+          "name": "keyword.operator",
+          "match": "(\\.\\.\\.)(\\s*&)?"
+        }
+      ]
 		},
+    "vars": {
+      "patterns": [
+        {
+          "name": "support.function",
+          "match": "@[a-zA-Z_$][a-zA-Z0-9_$]*"
+        }
+      ]
+    },
     "id": {
       "name": "variable.other",
       "match": "[a-zA-Z_$][a-zA-Z0-9_$]*"
