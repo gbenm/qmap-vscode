@@ -6,19 +6,34 @@
     {
       "name": "taggedTemplates",
       "contentName": "meta.embedded.block",
-      "begin": "(qmap)\\((`|\"|')",
+      "begin": "(qmap)(\\()(`|(\"|'))",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function"
         },
         "2": {
+          "name": "meta.brace.round"
+        },
+        "3": {
           "name": "punctuation.definition.string.template.begin"
+        },
+        "4": {
+          "name": "string.quoted"
         }
       },
-      "end": "(`|\"|')\\)",
+      "end": "(`|(\"|'))((\\))|(,))",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.template.end"
+        },
+        "2": {
+          "name": "string.quoted"
+        },
+        "4": {
+          "name": "meta.brace.round"
+        },
+        "5": {
+          "name": "punctuation.separator.comma"
         }
       },
       "patterns": [{ "include": "#qmap" }]
