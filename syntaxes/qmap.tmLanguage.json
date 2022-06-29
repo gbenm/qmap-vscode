@@ -104,7 +104,17 @@
       "patterns": [
         {
           "begin": "{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.dictionary.begin"
+            }
+          },
           "end": "}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.dictionary.end"
+            }
+          },
           "patterns": [{ "include": "#root" }]
         },
         { "include": "#strings"},
@@ -143,7 +153,7 @@
 			"patterns": [
         {
           "name": "keyword.operator",
-          "match": "((\\.\\.\\.)(\\s*&)?)|(,)|(!)"
+          "match": "(\\.\\.\\.)|(&)|(,)|(!)|(#)"
         }
       ]
 		},
@@ -165,7 +175,17 @@
     },
     "block": {
       "begin": "{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.dictionary.begin"
+        }
+      },
       "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.dictionary.end"
+        }
+      },
       "patterns": [{ "include": "#root" }]
     },
     "field_name": {
