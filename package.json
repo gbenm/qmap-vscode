@@ -8,21 +8,21 @@
       "type": "git"
     },
     "engines": {
-        "vscode": "^1.68.0"
+      "vscode": "^1.68.0"
     },
     "categories": [
-        "Programming Languages"
+      "Programming Languages"
     ],
     "contributes": {
-        "grammars": [{
-            "scopeName": "source.qmap.injection",
-            "path": "./syntaxes/qmap.tmLanguage.json",
-            "injectTo": [
-                "source.js",
-                "source.ts",
-                "source.js.jsx",
-                "source.tsx"
-            ]
-        }]
+      "grammars": [{
+        "scopeName": "source.qmap.injection",
+        "path": "./syntaxes/qmap.tmLanguage.json",
+        "injectTo": [
+          "source.js",
+          "source.ts",
+          "source.js.jsx",
+          "source.tsx"
+        ]
+      }]
     }
 }
