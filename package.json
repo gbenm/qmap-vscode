@@ -2,7 +2,7 @@
     "name": "qmap",
     "displayName": "qmap",
     "description": "highlight qmap language in template literals",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "repository": {
       "url": "https://github.com/gbenm/qmap-vscode.git",
       "type": "git"
